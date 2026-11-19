@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wearable Activity Detective</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Wearable Activity Detective</h1>
+    <p class="lede">A phone on someone's waist records how they move. Can you, or a small neural network, tell
+      walking on flat ground from walking up stairs and walking down stairs?</p>
+  </header>
+
+  <main>
+    <section id="guess-section" aria-labelledby="guess-title">
+      <h2 id="guess-title">1. Guess the walk</h2>
+      <p>This trace is 2.56 seconds of the phone's acceleration (gravity included) along three directions.
+        Pick what you think the person was doing, then see what the network said.</p>
+
+      <div class="controls">
+        <label for="filter">Show me</label>
+        <select id="filter">
+          <option value="mixed">A mixed set of windows</option>
+          <option value="wrong">Only windows the network got wrong</option>
+        </select>
+        <button id="next" type="button">Next trace</button>
+        <button id="spotlight-btn" type="button">Jump to the featured mistake</button>
+      </div>
+
+      <canvas id="trace" width="840" height="300" role="img" aria-label="Accelerometer trace"></canvas>
+      <div class="legend"><span class="lx">x direction</span><span class="ly">y direction</span><span class="lz">z direction</span></div>
+
+      <div class="guess-row" id="guess-row"></div>
+      <div id="reveal" class="reveal" hidden></div>
+      <p class="tally" id="tally"></p>
+      <p class="note">The mixed set contains every test mistake the network made plus a random sample of its correct
+        answers, so about 4 in 10 windows here are mistakes. The network's real test accuracy (section 3) is
+        much higher than its score on this set.</p>
+    </section>
+
+    <section id="spotlight" aria-labelledby="spot-title">
+      <h2 id="spot-title">2. One mistake, explained</h2>
+      <div id="spotlight-text"></div>
+    </section>
+
+    <section id="results" aria-labelledby="res-title">
+      <h2 id="res-title">3. How well does it work on people it never saw?</h2>
+      <div id="results-summary"></div>
+      <h3>Accuracy for each test person</h3>
+      <p class="note">Click "Show" to see only that person's mistakes in section 1.</p>
+      <div id="person-bars" class="person-bars"></div>
+      <h3>Which mistakes were made?</h3>
+      <div id="confusion"></div>
+    </section>
+
+    <section id="chat-section" aria-labelledby="chat-title">
+      <h2 id="chat-title">4. Ask the exhibit guide</h2>
+      <p>An optional chatbot that runs entirely in your browser and answers from the site guide below.
+        It needs a browser with WebGPU and downloads a model of several hundred MB, so it is off until you enable it.
+        The rest of this page works without it.</p>
+      <button id="enable-chat" type="button" class="primary">Enable chat</button>
+      <p id="chat-status" class="note" role="status"></p>
+      <progress id="chat-progress" max="1" value="0" hidden></progress>
+      <div id="chat-area" hidden>
+        <div id="chat-log" aria-live="polite"></div>
+        <form id="chat-form" class="chat-input">
+          <input type="text" id="chat-text" placeholder="Where did the data come from?" aria-label="Your question" autocomplete="off">
+          <button type="submit" id="chat-send">Ask</button>
+        </form>
+        <p class="note">Small language models can be wrong. Check answers against the guide below.</p>
+      </div>
+    </section>
+
+    <section id="guide-section" aria-labelledby="guide-title">
+      <h2 id="guide-title">Site guide</h2>
+      <details>
+        <summary>Read the guide the chatbot uses</summary>
+        <pre id="guide-text">Loading...</pre>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p>Data: Anguita, D., Ghio, A., Oneto, L., Parra, X., and Reyes-Ortiz, J. (2013). Human Activity Recognition
+      Using Smartphones. UCI Machine Learning Repository.
+      <a href="https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones">archive.ics.uci.edu/dataset/240</a>.
+      This exhibit is a class exercise, not a medical tool.</p>
+  </footer>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

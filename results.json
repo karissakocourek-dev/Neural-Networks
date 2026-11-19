@@ -1,0 +1,164 @@
+{
+  "data_source": "UCI Human Activity Recognition Using Smartphones (Anguita et al., 2013)",
+  "classes": [
+    "Walking",
+    "Walking upstairs",
+    "Walking downstairs"
+  ],
+  "n_train_windows": 3285,
+  "n_train_subjects": 21,
+  "n_test_windows": 1387,
+  "n_test_subjects": 9,
+  "test_class_counts": {
+    "Walking": 496,
+    "Walking upstairs": 471,
+    "Walking downstairs": 420
+  },
+  "n_features": 561,
+  "validation_subjects": [
+    3,
+    15,
+    16,
+    21,
+    22
+  ],
+  "tuning_candidates": [
+    {
+      "hidden": [
+        16
+      ],
+      "alpha": 0.0001,
+      "val_accuracy": 0.9739
+    },
+    {
+      "hidden": [
+        16
+      ],
+      "alpha": 0.01,
+      "val_accuracy": 0.9739
+    },
+    {
+      "hidden": [
+        16
+      ],
+      "alpha": 1.0,
+      "val_accuracy": 0.9684
+    },
+    {
+      "hidden": [
+        32
+      ],
+      "alpha": 0.0001,
+      "val_accuracy": 0.9725
+    },
+    {
+      "hidden": [
+        32
+      ],
+      "alpha": 0.01,
+      "val_accuracy": 0.9725
+    },
+    {
+      "hidden": [
+        32
+      ],
+      "alpha": 1.0,
+      "val_accuracy": 0.9587
+    },
+    {
+      "hidden": [
+        64
+      ],
+      "alpha": 0.0001,
+      "val_accuracy": 0.9807
+    },
+    {
+      "hidden": [
+        64
+      ],
+      "alpha": 0.01,
+      "val_accuracy": 0.9794
+    },
+    {
+      "hidden": [
+        64
+      ],
+      "alpha": 1.0,
+      "val_accuracy": 0.9574
+    },
+    {
+      "hidden": [
+        64,
+        32
+      ],
+      "alpha": 0.0001,
+      "val_accuracy": 0.9725
+    },
+    {
+      "hidden": [
+        64,
+        32
+      ],
+      "alpha": 0.01,
+      "val_accuracy": 0.9725
+    },
+    {
+      "hidden": [
+        64,
+        32
+      ],
+      "alpha": 1.0,
+      "val_accuracy": 0.9574
+    }
+  ],
+  "chosen": {
+    "hidden": [
+      64
+    ],
+    "alpha": 0.0001,
+    "val_accuracy": 0.9807
+  },
+  "test_accuracy_network": 0.938,
+  "test_accuracy_baseline_most_frequent": 0.3576,
+  "baseline_predicts": "Walking",
+  "test_accuracy_logistic_regression": 0.9719,
+  "n_test_mistakes": 86,
+  "confusion_matrix_rows_true_cols_pred": [
+    [
+      478,
+      14,
+      4
+    ],
+    [
+      27,
+      442,
+      2
+    ],
+    [
+      3,
+      36,
+      381
+    ]
+  ],
+  "per_subject_test_accuracy": {
+    "2": 1.0,
+    "4": 0.994,
+    "9": 0.937,
+    "10": 0.884,
+    "12": 0.98,
+    "13": 0.987,
+    "18": 0.882,
+    "20": 0.789,
+    "24": 0.977
+  },
+  "gallery_size": 206,
+  "gallery_mistakes": 86,
+  "gallery_correct_sample": 120,
+  "highlighted_mistake": {
+    "id": 1176,
+    "subject": 20,
+    "truth": "Walking downstairs",
+    "predicted": "Walking upstairs",
+    "confidence": 1.0
+  }
+}
