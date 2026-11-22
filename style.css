@@ -1,40 +1,121 @@
 :root {
-  --bg: #f7f7f4;
+  --bg: #6fb85a;
   --card: #ffffff;
   --ink: #1d2327;
-  --muted: #5b6770;
-  --line: #dcdfe1;
+  --muted: #55626b;
+  --line: #d6d9d4;
   --accent: #1a5fb4;
   --good: #1b7f4b;
   --bad: #b3261e;
   --x: #1a5fb4;
   --y: #c2410c;
   --z: #15803d;
+  --wood: #6b4423;
+  --wood-dark: #4d3018;
+  --cream: #fff6df;
+  --paving: #dedad1;
 }
 
 * { box-sizing: border-box; }
 
+html { background: var(--bg); }
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg);
+  background: transparent;
   color: var(--ink);
   line-height: 1.5;
 }
 
-header, main, footer { max-width: 920px; margin: 0 auto; padding: 0 16px; }
-header { padding-top: 28px; }
+/* ---------- Park scene ---------- */
+
+.park-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg);
+}
+.park-bg svg { width: 100%; height: 100%; display: block; }
+
+.foreground {
+  margin-top: 8px;
+  background: linear-gradient(to bottom, rgba(76, 151, 61, 0) 0, #4c973d 100%);
+  line-height: 0;
+}
+.foreground svg {
+  display: block;
+  width: 100%;
+  max-width: 1300px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* ---------- Layout ---------- */
+
+header, main, footer { max-width: 920px; margin: 0 auto; }
+header { padding: 28px 16px 36px; }
+
+/* Wooden park sign holds the title */
+.sign {
+  position: relative;
+  background: linear-gradient(to bottom, #7c5230, var(--wood));
+  color: var(--cream);
+  border: 4px solid var(--wood-dark);
+  border-radius: 12px;
+  padding: 16px 22px 18px;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.18);
+}
+.sign::before, .sign::after {
+  content: "";
+  position: absolute;
+  bottom: -34px;
+  width: 16px;
+  height: 34px;
+  background: var(--wood-dark);
+  border-radius: 0 0 4px 4px;
+}
+.sign::before { left: 12%; }
+.sign::after { right: 12%; }
 h1 { margin: 0 0 4px; font-size: 1.9rem; }
-h2 { margin-top: 0; font-size: 1.3rem; }
-.lede { color: var(--muted); margin-top: 0; }
+.lede { margin: 0; color: #fbeccb; }
+
+/* The sidewalk down the middle of the park holds the content */
+main {
+  position: relative;
+  padding: 14px 18px 18px;
+  background-color: var(--paving);
+  background-image:
+    repeating-linear-gradient(to bottom, transparent 0, transparent 179px, rgba(90, 84, 72, 0.28) 179px, rgba(90, 84, 72, 0.28) 181px),
+    linear-gradient(to right, transparent calc(50% - 1px), rgba(90, 84, 72, 0.2) calc(50% - 1px), rgba(90, 84, 72, 0.2) calc(50% + 1px), transparent calc(50% + 1px));
+  border-left: 9px solid #b9b4a8;
+  border-right: 9px solid #b9b4a8;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
 
 section {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 18px;
-  margin: 18px 0;
+  margin: 16px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+h2 { margin-top: 0; font-size: 1.3rem; color: #25492b; }
+h3 { color: #25492b; }
+
+footer {
+  margin-top: 22px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+footer p { margin: 0; }
+
+/* ---------- Controls ---------- */
 
 .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
 label { font-size: 0.9rem; color: var(--muted); }
@@ -47,9 +128,10 @@ select, button, input[type="text"] {
   color: var(--ink);
 }
 button { cursor: pointer; }
-button:hover:not(:disabled) { border-color: var(--accent); }
+button:hover:not(:disabled) { border-color: #2f7d3a; }
 button:disabled { opacity: 0.5; cursor: not-allowed; }
-button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+button.primary { background: #2f7d3a; color: #fff; border-color: #2f7d3a; }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid #f5b82e; outline-offset: 2px; }
 
 canvas { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fcfcfb; }
 .legend { display: flex; gap: 14px; font-size: 0.85rem; color: var(--muted); margin: 6px 0 10px; }
@@ -75,10 +157,11 @@ canvas { width: 100%; height: auto; border: 1px solid var(--line); border-radius
 .tally { font-size: 0.95rem; color: var(--muted); }
 .note { font-size: 0.85rem; color: var(--muted); }
 
+#confusion, #results-summary { overflow-x: auto; }
 table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
 th, td { border: 1px solid var(--line); padding: 6px 10px; text-align: right; }
 th:first-child, td:first-child { text-align: left; }
-th { background: #f1f3f4; }
+th { background: #eef3ea; }
 
 .person-bars { display: grid; gap: 5px; }
 .person-row { display: grid; grid-template-columns: 90px 1fr 60px 70px; gap: 8px; align-items: center; font-size: 0.9rem; }
@@ -95,10 +178,13 @@ th { background: #f1f3f4; }
 .chat-input input { flex: 1; }
 progress { width: 100%; height: 12px; }
 
-details pre { white-space: pre-wrap; background: #f1f3f4; padding: 12px; border-radius: 8px; font-size: 0.88rem; }
-footer { padding-bottom: 36px; color: var(--muted); font-size: 0.85rem; }
+details pre { white-space: pre-wrap; background: #f1f4ee; padding: 12px; border-radius: 8px; font-size: 0.88rem; }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
+  header { padding: 16px 10px 36px; }
+  main { padding: 10px; border-left-width: 6px; border-right-width: 6px; }
+  footer { margin-left: 10px; margin-right: 10px; }
+  h1 { font-size: 1.5rem; }
   .bar-row { grid-template-columns: 110px 1fr 48px; }
   .person-row { grid-template-columns: 70px 1fr 52px 60px; }
 }
