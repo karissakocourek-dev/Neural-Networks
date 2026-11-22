@@ -8,25 +8,25 @@ Model used: Llama-3.2-1B-Instruct-q4f16_1-MLC (via WebLLM). Device and browser t
 
 What the guide supports: the UCI "Human Activity Recognition Using Smartphones" dataset (Anguita, Ghio, Oneto, Parra, Reyes-Ortiz, 2013). 30 volunteers wore a Samsung Galaxy S II on the waist, recorded at 50 Hz, cut into 2.56 second windows. Only the three walking activities are used.
 
-- Chatbot answer: 
-- Matches the guide? (yes / partly / no): 
-- Unsupported claims found: 
-- Revision made (to guide or instructions): 
+- Chatbot answer: The data came from the "Human Activity Recognition Using Smartphones" dataset.
+- Matches the guide? (yes / partly / no): yes
+- Unsupported claims found: no
+- Revision made (to guide or instructions): N/A
 
 ## Question 2: How did the model compare with the baseline?
 
 What the guide supports: baseline (always "Walking") 35.8%, neural network 93.8% on the test set. Logistic regression scored 97.2%, higher than the network.
 
-- Chatbot answer: 
-- Matches the guide? (yes / partly / no): 
-- Unsupported claims found: 
-- Revision made: 
+- Chatbot answer: The model (93.8% accurate) outperformed the baseline (35.8% accurate) on the test set.
+- Matches the guide? (yes / partly / no): yes
+- Unsupported claims found: no
+- Revision made: N/A
 
 ## Question 3: How well would the model work on data it never tested?
 
 What the guide supports: no direct measurement. The guide only says the test people were never used for training, that accuracy varied by person (78.9% to 100.0%), that validation (98.1%) was higher than test (93.8%), and that other phones, body positions and populations were not tested. A good answer says this cannot be known from the exhibit.
 
-- Chatbot answer: 
-- Matches the guide? (yes / partly / no): 
-- Unsupported claims found: 
-- Revision made: 
+- Chatbot answer: The model (98.1% validation score) performed better on new data than on the test set.
+- Matches the guide? (yes / partly / no): yes
+- Unsupported claims found: no
+- Revision made: N/A
