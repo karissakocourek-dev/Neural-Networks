@@ -426,7 +426,12 @@ async function askQuestion() {
     }
     chatHistory.push({ role: "assistant", content: reply });
   } catch (error) {
-    bubble.textContent = "Sorry, the chat model hit an error. The exhibit above still works.";
+    console.error("Chat error:", error);
+    chatHistory.pop();
+    bubble.textContent =
+      "Sorry, the chat model hit an error: " +
+      (error && error.message ? error.message : String(error)) +
+      " (The exhibit above still works.)";
   }
   el("chat-send").disabled = false;
 }
